@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from "react-native";
 import { Link } from '@react-navigation/native';
 import Colors from "../../constants/Colors";
 import Size from "../../constants/Size";
@@ -7,41 +7,57 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 
 
-export default function RegisterScreen() {
+export default function ResetPasswordScreen({navigation}) {
+
+
+  const IconBack = ({onPress}) => {
+      return (
+          <TouchableOpacity style={{
+              width: 50,
+              height: 50,
+              borderRadius: Size.defaultBorderRadius,
+              backgroundColor: Colors.gray,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+              borderColor: Colors.white
+          }}
+          onPress={onPress}
+          >
+              <Text style={{
+                  fontSize: 20
+              }}>{'\<'}</Text>
+          </TouchableOpacity>
+      )
+  }  
 
   return (
      <View style={styles.container}>
        {/* Navigation */}
        <View style={styles.navigation}>
-         <Text>Sign up and icon</Text>
+         <IconBack onPress={()=>navigation.goBack()}/>
        </View>
 
        {/* Header */}
        <View style={styles.header}>
-         <Text style={styles.title}>Create New Account</Text>
-         <Text style={styles.subtitle}>We happy to see you again. Sign Up to {'\n'} your account</Text>
+         <Text style={styles.title}>Forgot Password</Text>
+         <Text style={styles.subtitle}>We will send a password to your email</Text>
        </View>
 
         {/* Form */}
         <View style={styles.form}>
-          <Text style={styles.label}>Username</Text>
-          <Input placeholder="my_ri_dick" placeholderTextColor={Colors.gray}/>
           <Text style={styles.label}>Email</Text>
           <Input placeholder="my_ri_dick@cacabounga.fr" placeholderTextColor={Colors.gray}/>
-          <Text style={styles.label}>Password</Text>
-          <Input placeholder="************" placeholderTextColor={Colors.gray} secureTextEntry={true} />
-          <Text style={styles.label}>Confirm Password</Text>
-          <Input placeholder="************" placeholderTextColor={Colors.gray} secureTextEntry={true} />
-          <Text style={styles.caption}>By signing up, you agree to all the 
-          <Link style={styles.link} to={{ screen: "login" }}> terms & conditions </Link>
+          <Text style={styles.caption}>By sending, you agree to the
+          <Link style={styles.link} to={{ screen: "login" }}> Privacy Policy </Link>
           </Text>
-          <Button text="Create Account" backgroundColor={Colors.secondary} />
+          <Button text="Send" backgroundColor={Colors.secondary} />
         </View>
 
         {/* Sign In */}
        <View style={styles.captionSignIn}>
-       <Text style={styles.captionSignInText}>Have an account? 
-        <Link style={styles.link} to={{ screen: "login" }}> Sign In</Link>
+       <Text style={styles.captionSignInText}>Need help? 
+        <Link style={styles.link} to={{ screen: "login" }}> Contact our support team</Link>
         </Text>
        </View>
     </View>
@@ -106,8 +122,10 @@ captionSignInText:{
 navigation:{
   width: width,
   height: height * 0.15,
-  backgroundColor: Colors.secondary,
-  justifyContent: 'center',
-  alignItems: 'center'
+//  backgroundColor: Colors.secondary,
+  justifyContent: 'space-between',
+  paddingHorizontal: Size.defaultPadding,
+  alignItems: 'center',
+  flexDirection: 'row'
 }
 });

@@ -3,18 +3,25 @@ import { StyleSheet, Text, TouchableOpacity, View, TextInput, Dimensions } from 
 import Size from '../../../constants/Size';
 import Colors from '../../../constants/Colors';
 
-export default function Input({placeholder, secureTextEntry}) {
+export default function Input({placeholder, secureTextEntry, borderColor, borderWith, onChange, onChangeText, value, placeholderTextColor}) {
   return (
       <>
     <TextInput
-     style={styles.container}
+     style={[styles.container, {
+      borderColor: borderColor,
+      borderWidth: borderWith
+      }]}
      placeholder={placeholder}
-     placeholderTextColor={Colors.white}
+     placeholderTextColor={placeholderTextColor}
      secureTextEntry={secureTextEntry}
+     value={value}
+     onChange={onChange}
+     onChangeText={onChangeText}
      />
     </>
   );
 }
+
 const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
@@ -26,6 +33,6 @@ const styles = StyleSheet.create({
     borderRadius: Size.defaultBorderRadius,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: Size.defaultPadding
+    paddingHorizontal: Size.largePadding
   },
 });

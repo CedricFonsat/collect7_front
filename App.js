@@ -1,16 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/screens/auth/LoginScreen'
+import * as React from "react";
+import AppNavigator from "./src/navigation/app.navigator";
+import { store } from "./src/store/store";
+import { Provider } from "react-redux";
 
 export default function App() {
-  return (<LoginScreen/>);
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
